@@ -13,7 +13,7 @@ A machine learning model that predicts **who will develop a health condition** b
 | Egor | Infrastructure & Coordination | [@buzzmybrand](https://github.com/buzzmybrand) |
 | Oluwatobi | ML & Model Lead | [@tobimichigan](https://github.com/tobimichigan) |
 | Masha | Data & Analysis Lead | [@mash1ne](https://github.com/mash1ne) |
-| Mo | Medical & Feature Lead | TBD |
+| Mo | Medical & Feature Lead | [@mgassime](https://github.com/mgassime) |
 
 ## Approach
 
