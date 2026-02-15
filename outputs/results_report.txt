@@ -1,23 +1,22 @@
 ======================================================================
  RAND HRS — EARLY HEALTH RISK PREDICTION — RESULTS REPORT
- Generated: 2026-02-15 13:40:33
+ Generated: 2026-02-15 14:53:11
 ======================================================================
 
 PRIMARY METRICS (F2-Score prioritised over Precision)
 ----------------------------------------
-  [train   ]  ROC-AUC=0.9909  PR-AUC=0.9911  F2=0.9444  Recall=0.9988  Precision=0.7756
-  [val     ]  ROC-AUC=0.8989  PR-AUC=0.7703  F2=0.8361  Recall=0.9506  Precision=0.5642
-  [test    ]  ROC-AUC=0.8989  PR-AUC=0.7722  F2=0.8363  Recall=0.9487  Precision=0.5674
-  [holdout ]  ROC-AUC=0.9007  PR-AUC=0.7727  F2=0.8367  Recall=0.9504  Precision=0.5660
+  [train   ]  ROC-AUC=0.9505  PR-AUC=0.8792  F2=0.8615  Recall=0.9903  Precision=0.5666
+  [val     ]  ROC-AUC=0.8904  PR-AUC=0.7391  F2=0.8272  Recall=0.9521  Precision=0.5426
+  [test    ]  ROC-AUC=0.9029  PR-AUC=0.7741  F2=0.8331  Recall=0.9584  Precision=0.5471
+  [holdout ]  ROC-AUC=0.8902  PR-AUC=0.7438  F2=0.8274  Recall=0.9543  Precision=0.5400
 
 ENSEMBLE WEIGHTS
 ----------------------------------------
-  lgbm                : 0.7500
-  catboost            : 0.2500
+  catboost            : 0.8000
   rf                  : 0.0000
-  earlyrisket         : 0.0000
+  earlyrisket         : 0.2000
 
-OPTIMAL THRESHOLD (F2-maximised): 0.180
+OPTIMAL THRESHOLD (F2-maximised): 0.320
 
 FEATURE SET (no leakage)
 ----------------------------------------
@@ -31,8 +30,8 @@ FAIRNESS AUDIT
 
 NOISE ROBUSTNESS SUMMARY
 ----------------------------------------
-  Clean test: ROC-AUC=0.8989, F2=0.8363
-  Worst case (scale=0.3, flip=0.1): ROC-AUC=0.7887, F2=0.8045
+  Clean test: ROC-AUC=0.9029, F2=0.8331
+  Worst case (scale=0.3, flip=0.1): ROC-AUC=0.8608, F2=0.7898
 
 NLP / VOICE INTEGRATION STRATEGY
 ----------------------------------------
