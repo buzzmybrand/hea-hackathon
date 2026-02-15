@@ -1,0 +1,49 @@
+======================================================================
+ RAND HRS — EARLY HEALTH RISK PREDICTION — RESULTS REPORT
+ Generated: 2026-02-15 13:40:33
+======================================================================
+
+PRIMARY METRICS (F2-Score prioritised over Precision)
+----------------------------------------
+  [train   ]  ROC-AUC=0.9909  PR-AUC=0.9911  F2=0.9444  Recall=0.9988  Precision=0.7756
+  [val     ]  ROC-AUC=0.8989  PR-AUC=0.7703  F2=0.8361  Recall=0.9506  Precision=0.5642
+  [test    ]  ROC-AUC=0.8989  PR-AUC=0.7722  F2=0.8363  Recall=0.9487  Precision=0.5674
+  [holdout ]  ROC-AUC=0.9007  PR-AUC=0.7727  F2=0.8367  Recall=0.9504  Precision=0.5660
+
+ENSEMBLE WEIGHTS
+----------------------------------------
+  lgbm                : 0.7500
+  catboost            : 0.2500
+  rf                  : 0.0000
+  earlyrisket         : 0.0000
+
+OPTIMAL THRESHOLD (F2-maximised): 0.180
+
+FEATURE SET (no leakage)
+----------------------------------------
+  39 engineered features
+  (Disease flags, medication proxies, and direct diagnosis
+   columns are EXCLUDED to prevent data leakage)
+
+FAIRNESS AUDIT
+----------------------------------------
+   No significant disparities detected.
+
+NOISE ROBUSTNESS SUMMARY
+----------------------------------------
+  Clean test: ROC-AUC=0.8989, F2=0.8363
+  Worst case (scale=0.3, flip=0.1): ROC-AUC=0.7887, F2=0.8045
+
+NLP / VOICE INTEGRATION STRATEGY
+----------------------------------------
+  • Extract structured fields from free-text via spaCy NER
+    (symptoms, conditions, medications mentioned in conversation).
+  • Speech → Text: Whisper (OpenAI, open-source) for voice input.
+  • BioNLP BERT (e.g. BioClinicalBERT) for symptom classification.
+  • Temporal expressions → wave-aligned numeric features via
+    rule-based normalisation (TIMEX3 / HeidelTime).
+  • Missing fields from conversation defaults to population median.
+  • All extracted values are funnelled into the same 'fe_*'
+    feature namespace and scored by the saved model.
+
+======================================================================

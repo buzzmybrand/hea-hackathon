@@ -1,75 +1,113 @@
-# Hea Hackathon: Early Health Risk Prediction
+# 🌅 Morning Hea: Early Health Risk Prediction
 
-> 🏆 Hackathon: "AI in Search of Hidden Health Signals" — Feb 14-15, 2026
+> 🏆 **HEA Hackathon** — "AI in Search of Hidden Health Signals" — Feb 14-15, 2026
 
-## What We're Building
+## 🎯 What We Built
 
-A machine learning model that predicts **who will develop a health condition** before clinical diagnosis — using only self-reported data.
+A machine learning pipeline that predicts **health decline** before clinical diagnosis — using only self-reported longitudinal data with **zero diagnosis leakage**.
 
-## Team
+### Results (Holdout Set)
 
-| Name | Role | GitHub |
-|------|------|--------|
-| Egor | Infrastructure & Coordination | [@buzzmybrand](https://github.com/buzzmybrand) |
-| Oluwatobi | ML & Model Lead | [@tobimichigan](https://github.com/tobimichigan) |
-| Masha | Data & Analysis Lead | [@mash1ne](https://github.com/mash1ne) |
-| Mo | Medical & Feature Lead | [@mgassime](https://github.com/mgassime) |
+| Metric | Score |
+|--------|-------|
+| **F2-Score** | 0.82 |
+| **ROC-AUC** | 0.88 |
+| **PR-AUC** | 0.72 |
+| **Recall** | 95% |
 
-## Approach
-
-1. **Dataset:** RAND HRS (longitudinal health survey, 1992-2022)
-2. **Target:** Predict disease onset (diabetes/heart disease/depression)
-3. **Model:** XGBoost/LightGBM with SHAP explainability
-4. **Key constraint:** No data leakage — only use features available BEFORE diagnosis
-
-## Project Structure
-
-```
-├── README.md
-├── AGENDA.md           # Team tasks and timeline
-├── data/               # Dataset files (gitignored if large)
-├── notebooks/          # Jupyter notebooks
-│   ├── 01_eda.ipynb
-│   ├── 02_feature_engineering.ipynb
-│   └── 03_modeling.ipynb
-├── src/                # Production code
-├── docs/               # Documentation
-│   └── nlp_strategy.md # NLP/voice extraction strategy
-└── presentation/       # Final pitch materials
-```
-
-## Evaluation Criteria
-
-**Primary Metrics (60%)**
-- F2-Score (recall > precision)
-- PR-AUC
-- ROC-AUC
-
-**Additional (40%)**
-- No data leakage
-- Real-world usability
-- Cost efficiency
-- Open source only
-- Explainability
-- Fairness (no demographic bias)
-
-## Timeline
-
-### Day 1 (Feb 14)
-- 10:00 — Build starts
-- 14:00 — Checkpoint #1
-- 19:00 — Checkpoint #2
-
-### Day 2 (Feb 15)
-- 14:00 — Checkpoint #3
-- 16:00 — **Submission deadline**
-
-## Resources
-
-- [RAND HRS Data](https://hrsdata.isr.umich.edu/data-products/rand)
-- [NLSY97 Data](https://www.nlsinfo.org/investigator/pages/search?s=NLSY97)
-- [PSID-SHELF Data](https://www.openicpsr.org/openicpsr/project/194322/version/V2/view)
+> ✅ We catch **95% of people who will experience health decline**
 
 ---
 
-Built with ❤️ for Hea Hackathon 2026
+## 👥 Team
+
+| Name | Role |
+|------|------|
+| **Egor** | Product & Pitch |
+| **Oluwatobi** | ML Engineering & Model Lead |
+| **Masha** | Data Analysis |
+| **Mohammed** | Public Health & Feature Design |
+
+---
+
+## 🔬 Approach
+
+### Data
+- **RAND Health & Retirement Study** (1992-2022)
+- 45,000+ participants, 30+ years of longitudinal data
+- 39 engineered features from health trajectories
+
+### Key Design Decisions
+
+| Decision | Why It Matters |
+|----------|----------------|
+| **Trajectories > Snapshots** | Health decline is a process — single measurements miss the trend |
+| **No diagnosis leakage** | Disease flags excluded from inputs — model predicts, not memorizes |
+| **Ensemble of 4 models** | LightGBM, CatBoost, RandomForest, Attention NN — weights optimized per validation |
+| **Recall-optimized (F2)** | Better to over-alert than miss a sick person |
+| **Fairness-tested** | Validated across gender, race & ethnicity — no disparities detected |
+
+### Feature Groups
+
+1. **Health trajectories** — mean, std, trend, range of self-rated health
+2. **Depression signals** — CESD scores, chronic waves, spikes
+3. **Functional limitations** — ADL/IADL trends
+4. **Lifestyle composites** — physical activity, smoking, drinking
+5. **Socioeconomic stress** — wealth/income volatility
+6. **BMI dynamics** — trends, obesity flags
+7. **Cross-domain interactions** — depression × health, BMI × depression
+
+---
+
+## 📁 Project Structure
+
+```
+├── README.md
+├── notebooks/
+│   └── early-health-risk-prediction-randhrs-1992-2022.ipynb  # Main pipeline
+├── models/
+│   ├── lgbm.pkl              # LightGBM model
+│   ├── catboost.pkl          # CatBoost model
+│   ├── rf.pkl                # RandomForest model
+│   ├── earlyrisket.pt        # Attention NN (PyTorch)
+│   └── model_meta.json       # Ensemble weights & config
+├── outputs/
+│   └── results_report.txt    # Evaluation summary
+├── plots/                    # Visualizations (ROC, PR, SHAP, fairness)
+├── docs/
+│   └── nlp_strategy.md       # Voice/NLP integration roadmap
+└── presentation/             # Pitch deck
+```
+
+---
+
+## 🚀 Hackathon Compliance
+
+- ✅ **Open Source** — 100% public code
+- ✅ **Explainable** — Feature importance + SHAP visualizations
+- ✅ **Fair** — Demographic parity analysis (gender, race, ethnicity)
+- ✅ **No Data Leakage** — Only weak signals as features, no diagnoses
+
+---
+
+## 📊 How to Run
+
+```bash
+# Install dependencies
+pip install tensorflow pandas numpy scikit-learn lightgbm catboost torch shap optuna imbalanced-learn
+
+# Run the notebook
+jupyter notebook notebooks/early-health-risk-prediction-randhrs-1992-2022.ipynb
+```
+
+**Note:** Requires RAND HRS dataset (`randhrs1992_2022v1.dta`) — available from [RAND HRS](https://hrsdata.isr.umich.edu/).
+
+---
+
+## 📜 License
+
+MIT License — Free to use, modify, and distribute.
+
+---
+
+*Built with ❤️ in 24 hours at HEA Hackathon 2026*
