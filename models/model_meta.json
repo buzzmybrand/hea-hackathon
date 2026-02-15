@@ -1,11 +1,10 @@
 {
   "ensemble_weights": {
-    "lgbm": 0.75,
-    "catboost": 0.25,
+    "catboost": 0.8,
     "rf": 0.0,
-    "earlyrisket": 0.0
+    "earlyrisket": 0.2
   },
-  "threshold": 0.18000000000000002,
+  "threshold": 0.32000000000000006,
   "feature_names": [
     "fe_srh_mean",
     "fe_srh_std",
@@ -47,11 +46,11 @@
     "fe_race",
     "fe_hispanic"
   ],
-  "saved_at": "2026-02-15T13:40:33.008433",
+  "saved_at": "2026-02-15T14:53:11.417358",
   "config": {
     "output_dir": "./outputs",
     "plot_dir": "./plots",
-    "model_dir": "./models",
+    "model_dir": "./model",
     "mem_limit_gb": 12.0,
     "chunk_rows": 50000,
     "max_chunks": 6,
